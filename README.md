@@ -1,1 +1,1 @@
-## This will be my website.
+This is my static website, built with Jekyll.
