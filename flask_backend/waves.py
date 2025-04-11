@@ -1,9 +1,12 @@
 import os
 from flask import Flask, send_file
 from flask_cors import CORS
+import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import numpy as np
+
+matplotlib.use('Agg')  # Set a non-interactive backend
 
 app = Flask(__name__)
 CORS(app)
