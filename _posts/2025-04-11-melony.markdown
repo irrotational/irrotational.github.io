@@ -1,0 +1,8 @@
+---
+layout: post
+title:  "Melony's Brain"
+date:   2025-04-07 17:25:59 +0100
+categories: jekyll update
+---
+
+Click [here](/waves) to see a scan of Melony's brain.
