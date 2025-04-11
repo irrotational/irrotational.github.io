@@ -6,8 +6,14 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation, PillowWriter
 import tempfile
 from flask import Flask, send_file
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
+
+@app.route("/")
+def home():
+    return "Flask backend running."
 
 @app.route("/animation")
 def animation():
@@ -42,5 +48,5 @@ def animation():
     # Send the animation as a response
     return send_file(tmp_file_path, mimetype='image/gif')
 
-if __name__ == "__main__":
-    app.run(debug=True, port=5050)
+#if __name__ == "__main__":
+#    app.run(debug=True, port=5050)

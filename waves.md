@@ -9,4 +9,4 @@ title: Waves
 	Here is an ECG scan of Melony's attention span:
 </p>
 
-<img src="http://127.0.0.1:5050/animation" alt="Animated GIF" />
+<img src="https://your-render-url.onrender.com/animation" alt="Cool animation">
