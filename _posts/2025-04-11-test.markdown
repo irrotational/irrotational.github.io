@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Melony's Brain"
+title:  "Test Post"
 date:   2025-04-07 17:25:59 +0100
 categories: jekyll update
 ---
 
-Click [here](/waves) to see a scan of Melony's brain.
+This is just a test.
