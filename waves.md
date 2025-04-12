@@ -10,3 +10,9 @@ title: Waves
 </p>
 
 <img src="https://irrotational-github-io.onrender.com/animation" alt="Cool animation">
+
+<p>
+	Here is a photo:
+</p>
+
+	<img src="https://irrotational-github-io.onrender.com/stuff" alt="Some png">

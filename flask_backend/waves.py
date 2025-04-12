@@ -13,6 +13,11 @@ static_dir = os.path.join(os.path.dirname(__file__), 'static')
 if not os.path.exists(static_dir):
 	os.makedirs(static_dir)
 
+@app.route("/stuff")
+def f():
+	filename = os.path.join(static_dir, 'pschdn_1917.png')
+	return send_file(filename, mimetype='image/png')
+
 @app.route("/animation")
 def serve_animation():
 	# Full path to the animation file
