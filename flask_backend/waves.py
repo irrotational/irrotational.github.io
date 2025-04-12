@@ -43,3 +43,8 @@ def generate_animation(filename):
 	ani.save(filename, writer="pillow")  # Save as GIF using Pillow writer
 	plt.close(fig)
 	print(f"Animation saved as {filename}")
+
+# Uncomment this to run a test build locally.
+# This must be commented out to deploy on Render, etc.
+#if __name__ == '__main__':
+#	app.run(debug=True)

@@ -15,4 +15,4 @@ title: Waves
 	Here is a photo:
 </p>
 
-	<img src="https://irrotational-github-io.onrender.com/stuff" alt="Some png">
+<img src="https://irrotational-github-io.onrender.com/stuff" alt="Some png">
