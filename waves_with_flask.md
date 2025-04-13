@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Waves
+title: Waves with Flask
 ---
 
 <h1>Waves in a Box</h1>
