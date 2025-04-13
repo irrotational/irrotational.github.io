@@ -1,50 +1,49 @@
-import os
-from flask import Flask, send_file
+from flask import Flask, request, send_file
+import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import numpy as np
+import os
+
+matplotlib.use("Agg")
 
 app = Flask(__name__)
 
-# Set the path to the 'static' folder inside 'flask_backend' directory explicitly
-static_dir = os.path.join(os.path.dirname(__file__), 'static')
-
-# Ensure the 'static' directory exists
-if not os.path.exists(static_dir):
-	os.makedirs(static_dir)
-
-@app.route("/stuff")
-def f():
-	filename = os.path.join(static_dir, 'pschdn_1917.png')
-	return send_file(filename, mimetype='image/png')
-
 @app.route("/animation")
-def serve_animation():
-	# Full path to the animation file
-	filename = os.path.join(static_dir, 'animation.gif')
+def generate_animation():
+	#freq = float(request.args.get("frequency", 1.0))  # default = 1.0 Hz
+	filename = "static/animation.gif"
 
-	# If the animation doesn't exist, generate it
-	if not os.path.exists(filename):
-		generate_animation(filename)
+	fig,ax = plt.subplots()
+	x = np.linspace(0,1,250)
+	line, = ax.plot( x,np.zeros(250) )
+	ax.set_ylim(-4,4)
 
-	return send_file(filename, mimetype='image/gif')
+	dt = 2E-3
+	c = 10
 
-def generate_animation(filename):
-	# Example of generating a simple animation
-	fig, ax = plt.subplots()
-	x = np.linspace(0, 2 * np.pi, 200)
-	line, = ax.plot(x, np.sin(x))
-
-	def update(frame):
-		line.set_ydata(np.sin(x + frame / 10.0))
+	def update(t):
+		ps = [1,2,3,4,5]
+		f = 0
+		for p in ps:
+			k = p * 2*np.pi
+			omega = c * k
+			f += np.sin(k*x) * np.cos(omega * t)
+		line.set_ydata(f)
 		return line,
 
-	ani = animation.FuncAnimation(fig, update, frames=100, interval=50)
-	ani.save(filename, writer="pillow")  # Save as GIF using Pillow writer
-	plt.close(fig)
-	print(f"Animation saved as {filename}")
+	T = 0.1
+	N_steps = int(T/dt)
+	frames = np.linspace(0,T,N_steps)
+	FPS = 60
+	interval = (1/FPS) * 1000
+	ani = animation.FuncAnimation(fig, update, frames=frames, blit=True, interval=interval)
+	print("Saving GIF...")
+	ani.save(filename, writer="pillow", fps=FPS)
+	print("Saved!")
+	plt.close()
 
-# Uncomment this to run a test build locally.
-# This must be commented out to deploy on Render, etc.
-#if __name__ == '__main__':
-#	app.run(debug=True)
+	return send_file(filename, mimetype="image/gif")
+
+#if __name__ == "__main__":
+#	app.run(debug=True, port=5000)
