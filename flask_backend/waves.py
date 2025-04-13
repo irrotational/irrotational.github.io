@@ -16,7 +16,7 @@ app = Flask(__name__,static_folder=static_folder)
 @app.route("/animation")
 def generate_animation():
 	#freq = float(request.args.get("frequency", 1.0))  # default = 1.0 Hz
-	filename = "static/animation.gif"
+	filename = os.path.join(static_folder,"animation.gif")
 
 	fig,ax = plt.subplots()
 	x = np.linspace(0,1,250)
