@@ -7,7 +7,11 @@ import os
 
 matplotlib.use("Agg")
 
-app = Flask(__name__)
+# Define the absolute path to the 'static' directory
+static_folder = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
+
+# Now pass the static folder path explicitly
+app = Flask(__name__,static_folder=static_folder)
 
 @app.route("/animation")
 def generate_animation():
